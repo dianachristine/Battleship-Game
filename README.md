@@ -1,2 +1,3 @@
-# Battleship web app and console app
+# Battleship
 
+Battleship web app and console app
