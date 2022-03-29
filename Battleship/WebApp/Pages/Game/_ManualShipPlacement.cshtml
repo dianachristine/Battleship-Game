@@ -1,0 +1,73 @@
+﻿@model WebAppTest.Pages.Game.GameModel
+
+
+@if (!@GameModel.Brain.HasCurrentPlayerPLacedShipsOnOpponentBoard() && GameModel.Brain.TempShipsLeftToPlace.Count > 0)
+{
+    <div class="container text-center">
+        <br/>
+        <div class="row justify-content-md-center">
+            @if (Model.ShipPlacingErrorMessage != null)
+            {
+                <div class="alert alert-danger" role="alert" style="width: 100%">
+                    @Model.ShipPlacingErrorMessage
+                </div>
+            }
+        </div>
+         <br/>
+        <div class="row">
+            <div class="col">
+                @if (@GameModel.Brain.TempShipsLeftToPlace[0].ShipSizeX == 1 && @GameModel.Brain.TempShipsLeftToPlace[0].ShipSizeY == 1)
+                {
+                    <h4>Please choose a coordinate for the following ship</h4>
+                }
+                @if (!(@GameModel.Brain.TempShipsLeftToPlace[0].ShipSizeX == 1 && @GameModel.Brain.TempShipsLeftToPlace[0].ShipSizeY == 1) && GameModel.Brain.TempManualShipPlacementShipStartPos == null && GameModel.Brain.TempManualShipPlacementShipWidthPos == null)
+                {
+                    <h4>Please choose starting coordinate for the following ship</h4>
+                }
+                @if (!(@GameModel.Brain.TempShipsLeftToPlace[0].ShipSizeX == 1 && @GameModel.Brain.TempShipsLeftToPlace[0].ShipSizeY == 1) && GameModel.Brain.TempManualShipPlacementShipStartPos != null && GameModel.Brain.TempManualShipPlacementShipWidthPos == null)
+                {
+                    <h4>Please choose width coordinate for the following ship</h4>
+                }
+                @if (!(@GameModel.Brain.TempShipsLeftToPlace[0].ShipSizeX == 1 && @GameModel.Brain.TempShipsLeftToPlace[0].ShipSizeY == 1) && GameModel.Brain.TempManualShipPlacementShipStartPos != null && GameModel.Brain.TempManualShipPlacementShipWidthPos != null)
+                {
+                    <h4>Please choose height coordinate for the following ship</h4>
+                }
+
+                <br/>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size X</th>
+                        <th>Size Y</th>
+                        <th>Quantity Left</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>@GameModel.Brain.TempShipsLeftToPlace[0].Name</td>
+                        <td>@GameModel.Brain.TempShipsLeftToPlace[0].ShipSizeX</td>
+                        <td>@GameModel.Brain.TempShipsLeftToPlace[0].ShipSizeY</td>
+                        <td>@GameModel.Brain.TempShipsLeftToPlace[0].Quantity</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br/>
+                @if (GameModel.Brain.TempManualShipPlacementShipStartPos != null)
+                {
+                    <h6>Starting coordinate: @(GameModel.Brain.ConvertCoordinateToString(GameModel.Brain.TempManualShipPlacementShipStartPos.Value))</h6>
+                }
+                @if (GameModel.Brain.TempManualShipPlacementShipWidthPos != null)
+                {
+                    <h6>Width coordinate: @(GameModel.Brain.ConvertCoordinateToString(GameModel.Brain.TempManualShipPlacementShipWidthPos.Value))</h6>
+                }
+
+            </div>
+            <div class="col">
+                <br/>
+                <div style="display: none">@(Model.ShowPlayerBoard = false)</div>
+                <partial name="_Board" model="Model"/>
+            </div>
+        </div>
+    </div>
+}

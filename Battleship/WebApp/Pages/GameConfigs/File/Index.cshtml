@@ -1,0 +1,38 @@
+@page
+@model WebAppTest.Pages_GameConfigs.FileIndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Saved settings from files</h1>
+
+<a class="btn btn-light" asp-page="/GameConfigs/File/Create">Create New</a>
+<br/>
+<br/>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th colspan="2">
+            File Name
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < Model.LoadedConfigsNames.Count; i++)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.LoadedConfigsNames[i])
+            </td>
+            <td>
+                <form method="post" asp-page="/Game/BattleShip">
+                    <input class="invisible" name="SettingsFileName" value=@Model.LoadedConfigs[i]>
+                    <button class="btn btn-light btn-sm" type="submit">Choose these settings</button> 
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

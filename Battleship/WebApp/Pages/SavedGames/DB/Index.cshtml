@@ -1,0 +1,41 @@
+@page
+@model WebAppTest.Pages_SavedGames.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Saved games from db</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Game Name</th>
+        <th>Current Player</th>
+        <th>Game Config</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.SavedGame)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SavedGameName)
+            </td>
+            <td>
+                @(item.CurrentPlayerNo == 0 ? "A" : "B")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameConfig.GameConfigName)
+            </td>
+            <td>
+                <form method="post" asp-page="/Game/BattleShip">
+                    <input class="invisible" name="EntityId" value=@item.SavedGameId>
+                    <button class="btn btn-light" type="submit">Choose this game</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

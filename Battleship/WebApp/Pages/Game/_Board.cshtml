@@ -1,0 +1,70 @@
+﻿@model WebAppTest.Pages.Game.GameModel
+
+<div class="row justify-content-center">
+    <table class="" border="1">
+        <tr style="height: 30px;">
+            <td></td>
+            @for (var i = 0; i < GameModel.Brain.GameBoards[0].Board.GetLength(0); i++)
+            {
+                <td style="width: 30px">
+                    @(GameModel.Brain.GetColumnLetterFromIndex(i))
+                </td>
+            }
+        </tr>
+
+        @for (var y = 0; y < GameModel.Brain.GameBoards[0].Board.GetLength(1); y++)
+        {
+            <tr style="height: 30px;">
+                <td style="width: 30px">@(y + 1)</td>
+                @for (var x = 0; x < GameModel.Brain.GameBoards[0].Board.GetLength(0); x++)
+                {
+                    @if (Model.ShowPlayerBoard)
+                    {
+                        @if (GameModel.Brain.GetBoardForCurrentPlayer()[x, y].IsBomb & GameModel.Brain.GetBoardForCurrentPlayer()[x, y].IsShip)
+                        {
+                            @if (Model.GameIsOver || GameModel.Brain.TempShowContinueButton)
+                            {
+                                <td style="background-color: #23272b; width: 30px">
+                                    @(GameModel.Brain.GetBoardForCurrentPlayer()[x, y])
+                                </td>
+                            }
+                            @if (!GameModel.Brain.TempShowContinueButton && !Model.GameIsOver)
+                            {
+                                <td style="background-color: #23272b; width: 30px; cursor: pointer" onclick="window.location.href = 'Battleship?x=@x&y=@y' ">
+                                    @(GameModel.Brain.GetBoardForCurrentPlayer()[x, y])
+                                </td>
+                            }
+                        }
+                        @if (!(GameModel.Brain.GetBoardForCurrentPlayer()[x, y].IsBomb & GameModel.Brain.GetBoardForCurrentPlayer()[x, y].IsShip))
+                        {
+                            @if (Model.GameIsOver || GameModel.Brain.TempShowContinueButton)
+                            {
+                                <td style="width: 30px">
+                                    @(GameModel.Brain.GetBoardForCurrentPlayer()[x, y])
+                                </td>
+                            }
+                            @if (!GameModel.Brain.TempShowContinueButton && !Model.GameIsOver)
+                            {
+                                <td style="width: 30px; cursor: pointer" onclick="window.location.href = 'Battleship?x=@x&y=@y' ">
+                                    @(GameModel.Brain.GetBoardForCurrentPlayer()[x, y])
+                                </td>
+                            }
+                        }
+                    }
+                    @if (Model.ShowPlayerBoard == false && GameModel.Brain.TempShipsLeftToPlace.Count == 0)
+                    {
+                        <td style="width: 30px">
+                            @(GameModel.Brain.GetBoardForOpponentPlayerWithShips()[x, y])
+                        </td>
+                    }
+                    @if (Model.ShowPlayerBoard == false && GameModel.Brain.TempShipsLeftToPlace.Count > 0)
+                    {
+                        <td style="width: 30px; cursor: pointer; text-align: center" onclick="window.location.href = 'Battleship?x=@x&y=@y' ">
+                             @(GameModel.Brain.GetBoardForOpponentPlayerWithShips()[x, y])
+                        </td>
+                    }
+                }
+            </tr>
+        }
+    </table>
+</div>

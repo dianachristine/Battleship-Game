@@ -1,0 +1,13 @@
+{
+  "BoardSizeX": 11,
+  "BoardSizeY": 11,
+  "ShipConfigs": [
+    {
+      "Name": "laev",
+      "Quantity": 3,
+      "ShipSizeY": 1,
+      "ShipSizeX": 2
+    }
+  ],
+  "EShipTouchRule": 0
+}

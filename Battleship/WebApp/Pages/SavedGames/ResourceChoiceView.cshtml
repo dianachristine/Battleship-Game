@@ -1,0 +1,30 @@
+﻿@page
+@model WebAppTest.Pages.SavedGames.ResourceChoiceView
+@{
+    ViewData["Title"] = "Choose resource";
+}
+
+<div class="container text-center">
+
+    <div class="row">
+        <div class="col">
+            <h2 class="display-5">Please choose load game resource</h2>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col">
+            <h4 class="display-7">
+                <a style=" color: #000000" asp-area="" asp-page="/SavedGames/File/Index">Files</a>
+            </h4>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col">
+            <h4 class="display-7">
+                <a style="color: #000000" asp-area="" asp-page="/SavedGames/DB/Index">Database</a>
+            </h4>
+        </div>
+    </div>
+</div>

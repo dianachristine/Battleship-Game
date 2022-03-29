@@ -1,0 +1,37 @@
+﻿@model WebAppTest.Pages.Game.GameModel
+
+<div class="container text-center">
+
+    <br/>
+    <div class="row">
+        <div class="col">
+            <h3 class="display-5">Player @(GameModel.Brain.CurrentPlayerToString()) please choose ship placement method</h3>
+            <h3 class="display-5">for placing ships on opponent board</h3>
+        </div>
+    </div>
+    <br/>
+    <br/>
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4"></div>
+        <div class="col-md-4 col-md-offset-4">
+            <h4 class="display-7">
+                <form method="post" asp-page="/Game/BattleShip">
+                    <button class="btn btn-light" type="submit">Random by computer</button>
+                    <input class="invisible" name="RandomShips" value="true">
+                </form>
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4"></div>
+        <div class="col-md-4 col-md-offset-4">
+            <h4 class="display-7">
+                <form method="post" asp-page="/Game/BattleShip">
+                    <button class="btn btn-light" type="submit">Manual by myself</button>
+                    <input class="invisible" name="ManualShips" value="true">
+                </form>
+            </h4>
+        </div>
+    </div>
+</div>

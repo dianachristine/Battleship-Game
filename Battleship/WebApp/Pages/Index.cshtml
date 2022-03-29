@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Play";
+}
+
+<div class="container text-center">
+
+    <div class="row">
+        <div class="col">
+            <h2 class="display-4">Welcome to the Battleship game!</h2>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col">
+            <h4 class="display-7">
+                <a style="color: #000000" asp-area="" asp-page="/Game/BattleShip" asp-route-x="-1" asp-route-y="-1">New Game</a>
+            </h4>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col">
+            <h4 class="display-7">
+                <a style=" color: #000000" asp-area="" asp-page="/SavedGames/ResourceChoiceView">Load Game</a>
+            </h4>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+@page
+@model WebAppTest.Pages.GameConfigs.DB.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Game Settings</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-page="./ShipConfigs">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="GameConfig.GameConfigName" class="control-label"></label>
+                <input asp-for="GameConfig.GameConfigName" class="form-control"/>
+                <span asp-validation-for="GameConfig.GameConfigName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameConfig.BoardSizeX" class="control-label"></label> (5-20)
+                <input asp-for="GameConfig.BoardSizeX" class="form-control"/>
+                <span asp-validation-for="GameConfig.BoardSizeX" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameConfig.BoardSizeY" class="control-label"></label> (5-20)
+                <input asp-for="GameConfig.BoardSizeY" class="form-control"/>
+                <span asp-validation-for="GameConfig.BoardSizeY" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameConfig.EShipTouchRule" class="control-label"></label> (0 - No Touch, 1 - Corner, 2 - Side)
+                <input asp-for="GameConfig.EShipTouchRule" class="form-control"/>
+                <span asp-validation-for="GameConfig.EShipTouchRule" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" value="Create" class="btn btn-light">Done, go to ships settings</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a style="color: #000000" asp-page="/GameConfigs/DB/Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

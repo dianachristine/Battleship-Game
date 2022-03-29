@@ -1,0 +1,83 @@
+﻿@page
+@model WebAppTest.Pages.Game.GameModel
+@{
+    ViewData["Title"] = "Game";
+}
+
+@if (!@GameModel.Brain.HasCurrentPlayerPLacedShipsOnOpponentBoard() && @Model.ManualShips == null && GameModel.Brain.TempShipsLeftToPlace.Count == 0)
+{
+    <partial name="_ShipPlacementMethodChoice" model="Model"/>
+}
+
+<partial name="_ManualShipPlacement" model="Model"/>
+
+@if (@GameModel.Brain.HasCurrentPlayerPLacedShipsOnOpponentBoard())
+{
+    <div class="container text-center">
+        <br/>
+        <div class="row justify-content-md-center">
+            @if (Model.GameErrorMessage != null)
+            {
+                <div class="alert alert-warning" role="alert" style="width: 100%">
+                    @Model.GameErrorMessage
+                </div>
+                <br/>
+            }
+        </div>
+        
+        @if (Model.GameIsOver)
+        {
+            <h3 class="display-6">Player @(GameModel.Brain.CurrentPlayerToString()) wins! Congratulations!</h3>
+        }
+        @if (!Model.GameIsOver)
+        {
+            <h3 class="display-6">Player @(GameModel.Brain.CurrentPlayerToString()) please make a move</h3>
+        }
+        <br/>
+
+        <div class="row">
+            <div class="col">
+                <h4>Your board:</h4>
+                <partial name="_Board" model="Model"/>
+                <div style="display: none">@(Model.ShowPlayerBoard = false)</div>
+                <br/>
+                @if (!GameModel.Brain.TempShowContinueButton && !Model.GameIsOver)
+                {
+                    <button type="button" class="btn btn-light">
+                        <a style="color: #000000" asp-area="" asp-page="/Game/BattleShip" asp-route-x="-0" asp-route-y="-1">Undo last move</a>
+                    </button>
+                    <button type="button" class="btn btn-light">
+                        <a style="color: #000000" asp-area="" asp-page="/Game/BattleShip" asp-route-x="-1" asp-route-y="-0">Save game</a>
+                    </button>
+                }
+                <br/>
+                @if (Model.GameIsSaved)
+                {
+                    <p>Game is saved to files and database!</p>
+                }
+            </div>
+
+            @if (!GameModel.Brain.TempShowContinueButton)
+            {
+                <div class="col">
+                    <h4>Your opponent board:</h4>
+                    <partial name="_Board" model="Model"/>
+                    <div style="display: none">@(Model.ShowPlayerBoard = true)</div>
+                </div>
+            }
+
+            @if (GameModel.Brain.TempShowContinueButton)
+            {
+                <div class="col">
+                    <h4>Result: @GameModel.Brain.LastMoveType()</h4>
+                    <h4>Player @GameModel.Brain.OpponentPlayerToString(), press Continue</h4>
+                    <form method="post" asp-page="/Game/BattleShip">
+                        <input class="invisible" name="OpponentWantsToContinue" value="true">
+                        <button class="btn btn-light btn-sm" type="submit">Continue</button>
+                        <input class="invisible" name="OpponentWantsToContinue" value="true">
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+}

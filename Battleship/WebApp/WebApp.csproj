@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>WebAppTest</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\BattleshipBrain\BattleshipBrain.csproj" />
+        <ProjectReference Include="..\DAL\DAL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="SavedGames\doble.json" />
+      <_ContentIncludedByDefault Remove="SavedGames\game4.json" />
+      <_ContentIncludedByDefault Remove="SavedGames\game_2021-12-29_21-07-02_PM.json" />
+      <_ContentIncludedByDefault Remove="SavedGames\game_2021-12-29_21-07-36_PM.json" />
+      <_ContentIncludedByDefault Remove="Pages\Coordinates\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Coordinates\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Coordinates\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Coordinates\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Coordinates\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Ships\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Ships\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Ships\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Ships\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Ships\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\GameBoards\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\GameBoards\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\GameBoards\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\GameBoards\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\GameBoards\Index.cshtml" />
+    </ItemGroup>
+
+</Project>

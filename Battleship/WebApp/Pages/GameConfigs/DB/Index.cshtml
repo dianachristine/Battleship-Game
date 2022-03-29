@@ -1,0 +1,57 @@
+@page
+@model WebAppTest.Pages_GameConfigs.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Saved settings from DB</h1>
+
+<a class="btn btn-light btn-sm" asp-page="/GameConfigs/DB/Create">Create New</a>
+<br/>
+<br/>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GameConfig[0].GameConfigName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameConfig[0].BoardSizeX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameConfig[0].BoardSizeY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameConfig[0].EShipTouchRule)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.GameConfig)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameConfigName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoardSizeX)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoardSizeY)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EShipTouchRule)
+            </td>
+            <td>
+                <form method="post" asp-page="/Game/BattleShip">
+                    <input class="invisible" name="SettingsEntityId" value=@item.GameConfigId>
+                    <button class="btn btn-light btn-sm" type="submit">Choose these settings</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
